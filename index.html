@@ -76,7 +76,7 @@
 
 		function renderMessage(data) {
 			var div = document.createElement('div');
-			div.innerHTML = '<span><strong>' + data.nickname + ':</strong>' + data.message + '</span>';
+			div.innerHTML = '<span><strong>' + data.nickname + ': </strong>' + data.message + '</span>';
 			messagesContainer.insertBefore(div, messagesContainer.firstChild);
 			greeting.style.display = 'none';
 		}
