@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta charset="UTF-8">
 	<title>Bro Chat</title>
+	<link rel="stylesheet" href="styles.css">
 	<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-	<style type="text/css">
+	<style>
+		#greeting {
+			text-align: center;
+		}
+
 		body {
 			margin: 0;
-			font-size: 28px;
+			font-size: 1.2em;
 		}
 
 		.panel {
@@ -15,9 +22,6 @@
 			bottom: 0;
 			left: 0;
 			width: 100%;
-			padding: 10px;
-			box-sizing: border-box;
-			background: #e2e2e2;
 		}
 
 		input {
@@ -29,38 +33,39 @@
 			display: flex;
 		}
 
-		.input-left {
-			max-width: 20%;
-			padding-right: 10px;
+		.input-nickname {
+			width: 20%;
 		}
 
-		.input-left, .input-right {
-			flex-grow: 1;
-		}
-
-		form input[type="submit"] {
+		.input-send {
 			width: 15%;
 		}
+
+		.input-message {
+			width: 65%;
+		}
+
 	</style>
 </head>
 <body>
 	<div id="messages">
-		<p align="center" id="greeting">Welcome!</p>
+		<p id="greeting">Welcome!</p>
 	</div>
 	<div class="panel">
 		<form onsubmit="sendMessage(this.nickname.value, this.message.value); this.message.value = ''; return false;">
 			<div class="inputs">
-				<div class="input-left">
+				<div class="input-nickname">
 					<input name="nickname" placeholder="nickname" type="text" autocomplete="off" autofocus>
 				</div>
-				<div class="input-right">
+				<div class="input-message">
 					<input name="message" placeholder="message" type="text" autocomplete="off">
 				</div>
-				<input type="submit">
+				<div class="input-send">
+					<input type="submit" value="send">
+				</div>
 			</div>
 		</form>
 	</div>
-
 	<script type="text/javascript">
 		var	socket = io({transports: ['websocket']});
 		var messagesContainer = document.getElementById('messages');
